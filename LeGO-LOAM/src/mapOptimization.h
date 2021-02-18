@@ -59,6 +59,14 @@ class MapOptimization {
   float _history_keyframe_fitness_score;
   float _global_map_visualization_search_radius;
 
+  float _corner_ls;
+  float _surf_ls;
+  float _outlier_ls;
+  float _history_kf_ls;
+  float _surrounding_kp_ls;
+  float _global_map_kp_ls;
+  float _global_map_kf_ls;
+
   Channel<AssociationOut>& _input_channel;
   std::thread _run_thread;
 

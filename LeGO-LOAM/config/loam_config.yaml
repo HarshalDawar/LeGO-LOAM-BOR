@@ -24,12 +24,21 @@ lego_loam:
         enable_loop_closure: false
         mapping_frequency_divider: 5
 
-        surrounding_keyframe_search_radius: 50.0   # key frame that is within n meters from current pose will be
-                                                   # considered for scan-to-map optimization (when loop closure disabled)
-        surrounding_keyframe_search_num: 50        # submap size (when loop closure enabled)
+        surrounding_keyframe_search_radius: 50.0      # key frame that is within n meters from current pose will be
+                                                      # considered for scan-to-map optimization (when loop closure disabled)
+        surrounding_keyframe_search_num: 50           # submap size (when loop closure enabled)
 
-        history_keyframe_search_radius: 7.0        # key frame that is within n meters from current pose will be considerd for loop closure
-        history_keyframe_search_num: 25            # 2n+1 number of history key frames will be fused into a submap for loop closure
-        history_keyframe_fitness_score: 0.3        # the smaller the better alignment
+        history_keyframe_search_radius: 7.0           # key frame that is within n meters from current pose will be considerd for loop closure
+        history_keyframe_search_num: 25               # 2n+1 number of history key frames will be fused into a submap for loop closure
+        history_keyframe_fitness_score: 0.3           # the smaller the better alignment
 
         global_map_visualization_search_radius: 500.0 # key frames with in n meters will be visualized
+
+        #Mapping Resolution params
+        corner_filter_leaf_size: 0.2                  # default: 0.2; hres: 0.0500
+        surf_filter_leaf_size:  0.4                   # default: 0.4; hres: 0.1000
+        outlier_filter_leaf_size: 0.4                 # default: 0.4; hres: 0.1000
+        history_key_frames_filter_leaf_size: 0.4      # default: 0.4; hres: 0.1000
+        surrounding_key_poses_filter_leaf_size: 1.0   # default: 1.0; hres: 0.2500
+        global_map_key_poses_filter_leaf_size: 1.0    # default: 1.0; hres: 0.0625
+        global_map_key_frames_filter_leaf_size: 0.4   # default: 0.4; hres: 0.0250

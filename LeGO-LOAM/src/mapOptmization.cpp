@@ -63,20 +63,6 @@ MapOptimization::MapOptimization(ros::NodeHandle &node,
   pubRecentKeyFrames =
       nh.advertise<sensor_msgs::PointCloud2>("/recent_cloud", 2);
 
-  downSizeFilterCorner.setLeafSize(0.2, 0.2, 0.2);
-  downSizeFilterSurf.setLeafSize(0.4, 0.4, 0.4);
-  downSizeFilterOutlier.setLeafSize(0.4, 0.4, 0.4);
-
-  // for histor key frames of loop closure
-  downSizeFilterHistoryKeyFrames.setLeafSize(0.4, 0.4, 0.4);
-  // for surrounding key poses of scan-to-map optimization
-  downSizeFilterSurroundingKeyPoses.setLeafSize(1.0, 1.0, 1.0);
-
-  // for global map visualization
-  downSizeFilterGlobalMapKeyPoses.setLeafSize(1.0, 1.0, 1.0);
-  // for global map visualization
-  downSizeFilterGlobalMapKeyFrames.setLeafSize(0.4, 0.4, 0.4);
-
   odomAftMapped.header.frame_id = "/camera_init";
   odomAftMapped.child_frame_id = "/aft_mapped";
 
@@ -104,6 +90,41 @@ MapOptimization::MapOptimization(ros::NodeHandle &node,
 
   nh.getParam("/lego_loam/mapping/global_map_visualization_search_radius",
               _global_map_visualization_search_radius);
+
+  nh.getParam("/lego_loam/mapping/corner_filter_leaf_size",
+              _corner_ls);
+
+  nh.getParam("/lego_loam/mapping/surf_filter_leaf_size",
+              _surf_ls);
+
+  nh.getParam("/lego_loam/mapping/outlier_filter_leaf_size",
+              _outlier_ls);
+
+  nh.getParam("/lego_loam/mapping/history_key_frames_filter_leaf_size",
+              _history_kf_ls);
+
+  nh.getParam("/lego_loam/mapping/surrounding_key_poses_filter_leaf_size",
+              _surrounding_kp_ls);
+
+  nh.getParam("/lego_loam/mapping/global_map_key_poses_filter_leaf_size",
+              _global_map_kp_ls);
+
+  nh.getParam("/lego_loam/mapping/global_map_key_frames_filter_leaf_size",
+              _global_map_kf_ls);
+  
+  downSizeFilterCorner.setLeafSize(_corner_ls, _corner_ls, _corner_ls);
+  downSizeFilterSurf.setLeafSize(_surf_ls, _surf_ls, _surf_ls);
+  downSizeFilterOutlier.setLeafSize(_outlier_ls, _outlier_ls, _outlier_ls);
+
+  // for histor key frames of loop closure
+  downSizeFilterHistoryKeyFrames.setLeafSize(_history_kf_ls, _history_kf_ls, _history_kf_ls);
+  // for surrounding key poses of scan-to-map optimization
+  downSizeFilterSurroundingKeyPoses.setLeafSize(_surrounding_kp_ls, _surrounding_kp_ls, _surrounding_kp_ls);
+
+  // for global map visualization
+  downSizeFilterGlobalMapKeyPoses.setLeafSize(_global_map_kp_ls, _global_map_kp_ls, _global_map_kp_ls);
+  // for global map visualization
+  downSizeFilterGlobalMapKeyFrames.setLeafSize(_global_map_kf_ls, _global_map_kf_ls, _global_map_kf_ls);
 
   allocateMemory();
 

@@ -1,5 +1,13 @@
 # LeGO-LOAM-BOR
 
+This is a fork of the original [LeGO-LOAM-BOR](https://github.com/facontidavide/LeGO-LOAM-BOR.git).
+
+The purpose of this fork is to parameterize additional variables to enable switching between
+coarse and fine mapping via launch files.
+
+---------------------------------------------------------------------------------------------------
+
+
 This is a fork of the original [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM).
 
 The original author deserves all the credits, we just use good software engineering practices to
